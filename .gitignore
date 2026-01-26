@@ -1,0 +1,2 @@
+# Ignore nested site repos (they are separate git repositories)
+site-alpha/
