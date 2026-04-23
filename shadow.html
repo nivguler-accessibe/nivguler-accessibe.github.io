@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Alpha - Shadow DOM</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="shadow.html">Shadow DOM</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <h1>Shadow DOM Test</h1>
+        <p>This page tests accessFlow journeys inside a Shadow DOM.</p>
+
+        <div id="shadow-host"></div>
+    </main>
+
+    <script>
+        const host = document.getElementById('shadow-host');
+        const shadow = host.attachShadow({ mode: 'open' });
+
+        shadow.innerHTML = `
+            <style>
+                .shadow-container {
+                    padding: 1rem;
+                    border: 2px dashed #7c3aed;
+                    border-radius: 8px;
+                    margin-top: 1rem;
+                }
+                .shadow-container h2 {
+                    margin-top: 0;
+                    color: #7c3aed;
+                }
+                button {
+                    background: #7c3aed;
+                    color: #fff;
+                    border: none;
+                    padding: 0.6rem 1.2rem;
+                    border-radius: 6px;
+                    font-size: 1rem;
+                    cursor: pointer;
+                }
+                button:hover { background: #6d28d9; }
+                article {
+                    background: #f5f3ff;
+                    border: 1px solid #ddd6fe;
+                    border-radius: 6px;
+                    padding: 1rem;
+                    margin-top: 1rem;
+                }
+                article h3 { margin-top: 0; color: #4c1d95; }
+                article a { color: #7c3aed; }
+                article img { max-width: 100%; height: auto; border-radius: 4px; margin-top: 0.5rem; }
+            </style>
+            <div class="shadow-container">
+                <h2>Shadow DOM Section</h2>
+                <p>Click the button to add an article inside this shadow root.</p>
+                <button id="add-article-btn">Add Article</button>
+                <div id="articles"></div>
+            </div>
+        `;
+
+        let articleCount = 0;
+        shadow.getElementById('add-article-btn').addEventListener('click', () => {
+            articleCount++;
+            const article = document.createElement('article');
+            article.innerHTML = `
+                <h3>Article #${articleCount}</h3>
+                <p>This is dynamically created article number ${articleCount} inside the Shadow DOM.</p>
+                <ul>
+                    <li>Item A for article ${articleCount}</li>
+                    <li>Item B for article ${articleCount}</li>
+                </ul>
+                <a href="#article-${articleCount}">Read more about article ${articleCount}</a>
+                <img src="https://picsum.photos/seed/article${articleCount}/400/150" alt="Placeholder image for article ${articleCount}">
+            `;
+            shadow.getElementById('articles').appendChild(article);
+        });
+    </script>
+    
+    <footer>
+        <p>&copy; 2026 Test Site</p>
+    </footer>
+</body>
+</html>
