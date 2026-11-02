@@ -12,14 +12,15 @@ This site is automatically deployed to GitHub Pages using GitHub Actions. Any pu
 
 ## Structure
 
-- `index.html` - Home page
+- `index.html` - Home page: the Stable Selectors Lab hub (see below)
 - `about.html` - About page
 - `contact.html` - Contact page
 - `styles.css` - Stylesheet
 
-## Stable Selectors Lab (`/stable/`)
+## Stable Selectors Lab (site root)
 
-Test pages for accessFlow's stable selectors. On every load, `stable/lab.js` rewrites generated tokens: CSS-module,
+Test pages for accessFlow's stable selectors, served from the root (`index.html` is the lab hub and links to
+every page, since the scanner starts from the root). On every load, `lab.js` rewrites generated tokens: CSS-module,
 Next.js, styled-components and Emotion classes, state classes, React/Radix/Headless UI/Shopify/Ember/MUI ids, Vue
 `data-v-*`, Angular `_nghost`/`_ngcontent`, random `data-*` values and extra wrapper `<div>`s. Stable hooks (`id`,
 `data-testid`, `data-test-id`, `data-test`, `data-qa`, `data-cy`, plus the unrecognized `test-id` and
@@ -30,7 +31,7 @@ All values come from a seed, so any load can be replayed. The seed is shown in t
 
 ### Controls
 
-- **Scanner:** edit `stable/config.js` and push. The pages load it with a cache-buster, so the next scan after the
+- **Scanner:** edit `config.js` and push. The pages load it with a cache-buster, so the next scan after the
   deploy sees it. Per page: `seed` (`null` = new on every load), `seedMode` (`'time:15'` = one seed per 15 minutes, so
   desktop and mobile agree), `off` (freeze categories: `hash`, `state`, `ids`, `attrs`, `vue`, `angular`, `wrap`),
   `presets`, and page-specific options below.
