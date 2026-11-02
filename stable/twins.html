@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="lab-page" content="twins">
+<title>twins</title>
+<link rel="stylesheet" href="lab.css">
+<script src="lab-boot.js"></script>
+</head>
+<body>
+<!--
+  Ambiguity (1:1 guard) recipe. The seed is frozen in config.js (pages.twins) so only what you change moves.
+  Each twin's legacy selector depends on the seed (its slot and its own generated classes); its stable selector is
+  its data-testid. With swap on, the twins trade test ids while keeping their legacy selectors.
+  Only the two twin buttons fail on this page.
+-->
+<p><a href="index.html">lab</a> <a href="single.html">single</a></p>
+<main class="$mod:TwinsPage">
+  <h1>Twins</h1>
+  <div class="row $mod:Twins">
+    <div class="twin-slot-left $mod:Slot">
+      <button class="icon-btn $mod:TwinButton" data-testid="twin-a" data-swap-testid="twin-b"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+    </div>
+    <div class="twin-slot-right $mod:Slot">
+      <button class="icon-btn $mod:TwinButton" data-testid="twin-b" data-swap-testid="twin-a"><svg viewBox="0 0 24 24"><path d="M12 5v14"/></svg></button>
+    </div>
+  </div>
+</main>
+</body>
+</html>

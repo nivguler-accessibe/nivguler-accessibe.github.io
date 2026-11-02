@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="xx">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="lab-page" content="blog">
+<title>blog</title>
+<link rel="stylesheet" href="lab.css">
+<script src="lab-boot.js"></script>
+</head>
+<body>
+<!-- Vue-style page: every element of a component carries that component's data-v-<hash>, new on every load. -->
+<div id="app" data-v-app>
+  <div data-vc="TheHeader" class="topbar">
+    <a href="index.html" accesskey="h">lab</a>
+    <a href="shop.html" accesskey="h">shop</a>
+    <a href="dashboard.html">dashboard</a>
+    <a href="signup.html">signup</a>
+    <a href="#" aria-hidden="true" data-cy="header-search"><svg viewBox="0 0 24 24" width="12" height="12"><circle cx="10" cy="10" r="6"/></svg></a>
+  </div>
+
+  <div data-vc="BlogLayout" class="wrap">
+    <h1 class="big"></h1>
+    <div class="medium">The Blog</div>
+    <marquee class="faint">Breaking: selectors are unstable!!!</marquee>
+
+    <div class="cols">
+      <div data-vc="PostList" id="posts">
+        <div data-vc="PostCard" class="card post-7 $mod:card" data-cy="post-card-7">
+          <h4>Why hashes change</h4>
+          <p class="faint">Every build renames every class. <span style="color:#f99">Important</span> stuff in red.</p>
+          <a href="#">Read more</a>
+          <button class="icon-btn $mod:LikeButton $state" data-cy="like-post-7"><svg viewBox="0 0 24 24"><path d="M12 21l-9-9a5 5 0 0 1 9-5 5 5 0 0 1 9 5z"/></svg></button>
+          <span role="buton" tabindex="0" onclick="alert('share')">⤴</span>
+        </div>
+        <div data-vc="PostCard" class="card post-8 $mod:card" data-cy="post-card-8" data-wrap="2">
+          <h4>Vue scoped styles</h4>
+          <p class="faint">The data-v attribute scopes CSS to one component.</p>
+          <a href="#">Read more</a>
+          <button class="icon-btn $mod:LikeButton $state" data-cy="like-post-8"><svg viewBox="0 0 24 24"><path d="M12 21l-9-9a5 5 0 0 1 9-5 5 5 0 0 1 9 5z"/></svg></button>
+          <span role="buton" tabindex="0" onclick="alert('share')">⤴</span>
+        </div>
+        <div data-vc="PostCard" class="card post-9 $mod:card">
+          <h4>Untracked post</h4>
+          <p class="faint">No data-cy on this one.</p>
+          <a href="#">Read more</a>
+          <button class="icon-btn $mod:LikeButton $state"><svg viewBox="0 0 24 24"><path d="M12 21l-9-9a5 5 0 0 1 9-5 5 5 0 0 1 9 5z"/></svg></button>
+          <span role="buton" tabindex="0" onclick="alert('share')">⤴</span>
+        </div>
+      </div>
+
+      <div data-vc="BlogSidebar" class="sidebar $mod:sidebar" id="blog-sidebar">
+        <div class="medium">Tags</div>
+        <div class="row">
+          <a href="#" class="fake-btn" data-rand>css</a>
+          <a href="#" class="fake-btn" data-rand>vue</a>
+          <a href="#" class="fake-btn" data-rand>a11y</a>
+        </div>
+        <iframe srcdoc="<p>ad</p>" width="160" height="60"></iframe>
+        <div aria-labelledby="missing-heading-id" role="region">
+          <a href="#" tabindex="4"><svg viewBox="0 0 24 24" width="14" height="14"><rect width="20" height="14" x="2" y="5"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div data-vc="CommentForm" class="box" data-cy="comment-form">
+      <div class="medium">Leave a comment</div>
+      <textarea class="input" rows="3"></textarea>
+      <input type="text" class="input" placeholder="name">
+      <div class="fake-btn" onclick="alert('sent')">Send</div>
+      <span class="danger tiny">* required</span>
+    </div>
+  </div>
+
+  <div data-vc="TheFooter" class="footer">
+    <span>© blog</span> <a href="#">rss</a> <a href="#"><svg viewBox="0 0 24 24" width="10" height="10"><circle cx="5" cy="19" r="2"/></svg></a>
+  </div>
+</div>
+</body>
+</html>

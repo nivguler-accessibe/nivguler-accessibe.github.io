@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="lab-page" content="signup">
+<meta name="lab-style" content="next">
+<title>signup</title>
+<link rel="stylesheet" href="lab.css">
+<script src="lab-boot.js"></script>
+</head>
+<body>
+<!-- Next.js-style classes (Comp_name__hash), styled-components and Emotion, React useId ids on inputs. -->
+<div id="__next">
+  <div class="topbar $Nav_bar" data-testid="signup-nav">
+    <a href="index.html" class="$Nav_link">lab</a>
+    <a href="shop.html" class="$Nav_link">shop</a>
+    <a href="blog.html" class="$Nav_link">blog</a>
+    <a href="dashboard.html" class="$Nav_link">dashboard</a>
+  </div>
+
+  <div class="wrap $Signup_page">
+    <div class="big $Signup_title">Create account</div>
+    <h3 class="$Signup_subtitle">Step 1</h3>
+
+    <form id="signup-form" class="box $sc:Form" onsubmit="return false" autocomplete="off">
+      <!-- Placeholder only -->
+      <input type="email" name="email" class="input $em:Input" placeholder="Email" id="$react@email" data-testid="email-input">
+      <!-- Label pointing at an id that churns separately -->
+      <label for="$react@password-label-target" class="faint $Field_label">Password</label>
+      <input type="password" name="password" class="input $em:Input" id="$react@password">
+      <!-- aria-describedby to a generated id -->
+      <input type="text" name="phone" class="input $em:Input" aria-describedby="$react@phone-hint" data-qa="phone-input" data-wrap="2">
+      <span id="$react@phone-hint" class="tiny faint">digits only</span>
+
+      <div class="row $Field_row">
+        <input type="radio" name="plan" value="free" id="$uuid@plan-free"> Free
+        <input type="radio" name="plan" value="pro" id="$uuid@plan-pro"> Pro
+      </div>
+
+      <select name="country" class="input $sc:Select" data-test="country-select">
+        <option value="">--</option><option>Israel</option><option>USA</option>
+      </select>
+
+      <div class="row $Field_row">
+        <input type="checkbox" name="terms" id="$num@terms"><span class="tiny">I agree to the <a href="#" class="$Field_link">terms</a></span>
+      </div>
+
+      <div class="$Signup_captcha" id="captcha">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='30'%3E%3Ctext x='10' y='20' fill='%23999'%3Ex7Kp2%3C/text%3E%3C/svg%3E" class="$Signup_captchaImg">
+        <input type="text" name="captcha" class="input $em:Input">
+      </div>
+
+      <span class="danger $Signup_error $state">Something is wrong</span>
+      <div class="fake-btn $sc:Submit" onclick="alert('submitted')" data-testid="signup-submit">Sign up</div>
+      <button type="submit" class="icon-btn $sc:IconSubmit"><svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7z"/></svg></button>
+    </form>
+
+    <div class="box $Signup_social" data-cy="social-login">
+      <button class="icon-btn $em:Social" id="$headless@google" data-testid="google-login"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg></button>
+      <button class="icon-btn $em:Social" id="$headless@github"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16"/></svg></button>
+      <button class="icon-btn $em:Social" data-automation-id="apple-login"><svg viewBox="0 0 24 24"><path d="M12 3l9 18H3z"/></svg></button>
+    </div>
+  </div>
+
+  <div class="footer $Footer_root"><a href="#" class="$Footer_link">privacy</a> <a href="#" class="$Footer_link">privacy</a></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="lab-page" content="sneaky">
+<title>sneaky</title>
+<link rel="stylesheet" href="lab.css">
+<script src="lab-boot.js"></script>
+</head>
+<body>
+<!--
+  Generated tokens the stable-selector filters don't catch, so the stable value itself changes between loads.
+  Expect churn here even with the feature on (and stable_drift where the legacy selector happens to stay).
+  config.js pages.sneaky.presets is false: no <style data-styled> / <style data-emotion> on this page.
+-->
+<div class="topbar $mod:Topbar" data-qa="lab-nav">
+  <a href="index.html" class="$mod:navLink">lab</a>
+  <a href="single.html" class="$mod:navLink">single</a>
+  <a href="heavy.html" class="$mod:navLink">heavy</a>
+</div>
+
+<div class="wrap $mod:Page">
+  <div class="big $mod:Title">Sneaky tokens</div>
+
+  <!-- 1. styled-components without the preset signal: sc-xxxxx and kZaXyq look like real class names -->
+  <div class="box $mod:Box" id="styled-box">
+    <button class="$sc:Button"><svg viewBox="0 0 24 24" width="12"><path d="M5 12h14"/></svg></button>
+  </div>
+
+  <!-- 2. Letters-only CSS-module hash -->
+  <div class="box $mod:Box">
+    <button class="$alpha:CloseButton"><svg viewBox="0 0 24 24" width="12"><path d="M6 6l12 12"/></svg></button>
+  </div>
+
+  <!-- 3. One-digit hash at the end of the segment -->
+  <div class="box $mod:Box">
+    <a href="#" class="$weak:MoreLink"><svg viewBox="0 0 24 24" width="12"><path d="M8 5l8 7-8 7z"/></svg></a>
+  </div>
+
+  <!-- 4. Initialization classes that aren't state words, present or not depending on "timing" -->
+  <div class="box slider $init" id="hero-slider">
+    <div class="slider-track $init"><div class="slide $init">1</div><div class="slide">2</div></div>
+    <button class="slider-next $init"><svg viewBox="0 0 24 24" width="12"><path d="M8 5l8 7-8 7z"/></svg></button>
+  </div>
+
+  <!-- 5. Generated ids without digits: look like real ids -->
+  <div class="box $mod:Box">
+    <section id="$alpha@section" class="$mod:Section">
+      <button class="icon-btn $mod:SectionButton"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/></svg></button>
+    </section>
+  </div>
+
+  <!-- 6. Generated test attributes: letters-only is used (and changes); digit-heavy is ignored as hash-like -->
+  <div class="box $mod:Box">
+    <button class="icon-btn $mod:TestA" data-testid="$alpha@promo"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+    <button class="icon-btn $mod:TestB" data-testid="$num@promo"><svg viewBox="0 0 24 24"><path d="M12 5v14"/></svg></button>
+    <button class="icon-btn $mod:TestC" data-qa="$uuid@cta"><svg viewBox="0 0 24 24"><path d="M5 5l14 14"/></svg></button>
+  </div>
+
+  <!-- 7. Emotion without the preset: still caught, by the hash heuristic -->
+  <div class="box $mod:Box">
+    <a href="#" class="$em:Link"><svg viewBox="0 0 24 24" width="12"><path d="M8 5l8 7-8 7z"/></svg></a>
+  </div>
+</div>
+</body>
+</html>

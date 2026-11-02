@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="lab-page" content="index">
+<title>lab</title>
+<link rel="stylesheet" href="lab.css">
+<script src="lab-boot.js"></script>
+</head>
+<body>
+<div class="topbar $mod:Topbar" data-qa="lab-nav">
+  <a href="../index.html" class="$mod:navLink">site</a>
+  <a href="index.html" class="$mod:navLink">lab</a>
+  <a href="single.html" class="$mod:navLink">single</a>
+  <a href="shop.html" class="$mod:navLink">shop</a>
+  <a href="blog.html" class="$mod:navLink">blog</a>
+  <a href="dashboard.html" class="$mod:navLink">dashboard</a>
+  <a href="signup.html" class="$mod:navLink">signup</a>
+  <a href="twins.html" class="$mod:navLink">twins</a>
+  <a href="device.html" class="$mod:navLink">device</a>
+  <a href="sneaky.html" class="$mod:navLink">sneaky</a>
+  <a href="heavy.html" class="$mod:navLink">heavy</a>
+</div>
+
+<div class="wrap $mod:Page" id="lab-home">
+  <div class="big $mod:Title">Stable Selectors Lab</div>
+  <p class="faint $mod:Lead">Every page here rewrites its generated classes, ids and data attributes on each load. Stable hooks (ids, data-testid, data-qa, ...) never change. Every page is also full of accessibility issues on purpose.</p>
+
+  <div class="box $mod:Box" data-testid="lab-pages">
+    <div class="medium $mod:SectionTitle">Pages</div>
+    <table class="data $mod:Table">
+      <tr><td><a href="single.html" class="$mod:cellLink">single</a></td><td>A handful of failing elements, one per stable strategy. Good for dismissing an issue and rescanning.</td></tr>
+      <tr><td><a href="shop.html" class="$mod:cellLink">shop</a></td><td>Repeated product cards: anchored by test ids, anchored by ids, unanchored, duplicate ids, duplicate test ids.</td></tr>
+      <tr><td><a href="blog.html" class="$mod:cellLink">blog</a></td><td>Vue-style: data-v-* on every element, data-cy hooks.</td></tr>
+      <tr><td><a href="dashboard.html" class="$mod:cellLink">dashboard</a></td><td>Angular _nghost/_ngcontent, React useId, Radix and Headless UI ids, data-test-id hooks.</td></tr>
+      <tr><td><a href="signup.html" class="$mod:cellLink">signup</a></td><td>Forms: Next.js, styled-components and Emotion classes, generated ids on inputs and labels.</td></tr>
+      <tr><td><a href="twins.html" class="$mod:cellLink">twins</a></td><td>The ambiguity (1:1 guard) recipe. Frozen seed, controlled from config.js.</td></tr>
+      <tr><td><a href="device.html" class="$mod:cellLink">device</a></td><td>An element only on desktop, or on both devices.</td></tr>
+      <tr><td><a href="sneaky.html" class="$mod:cellLink">sneaky</a></td><td>Generated tokens the scanner's filters miss: expected drift and churn.</td></tr>
+      <tr><td><a href="heavy.html" class="$mod:cellLink">heavy</a></td><td>Thousands of failing elements, for the time budget.</td></tr>
+    </table>
+  </div>
+
+  <div class="box $mod:Box" id="lab-controls">
+    <div class="medium $mod:SectionTitle">Controls</div>
+    <p class="faint">Browser: <code>?seed=abc</code> freezes values, <code>?off=hash,ids</code> freezes categories, <code>?churn=0</code> freezes everything, <code>?badge=0</code> hides the seed badge. Scanner: edit <code>stable/config.js</code> and push.</p>
+    <div class="row">
+      <a href="?seed=demo" class="fake-btn $mod:Pill">freeze</a>
+      <a href="?" class="fake-btn $mod:Pill">churn</a>
+      <button class="icon-btn $mod:IconButton" data-qa="reload-button" onclick="location.reload()"><svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/></svg></button>
+    </div>
+  </div>
+
+  <div data-vc="HomePromo" class="banner $mod:Promo">
+    <span class="$mod:PromoText">New: hashes on every refresh!</span>
+    <a href="shop.html" class="icon-link $mod:PromoLink $state" data-wrap="2"><svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7z"/></svg></a>
+  </div>
+
+  <div class="footer $mod:Footer" data-cy="footer">
+    <span data-rand>© lab</span> · <a href="#" class="$mod:FooterLink">top</a> · <a href="#" class="$mod:FooterLink">click here</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="lab-page" content="device">
+<title>device</title>
+<link rel="stylesheet" href="lab.css">
+<script src="lab-boot.js"></script>
+</head>
+<body>
+<!--
+  Device moves (baseline, out of scope). config.js pages.device.deviceMove:
+  'desktop' renders the first button only at >= 768px; 'both' renders it on desktop and mobile.
+  Seed mode is per load unless config says otherwise, so set seedMode 'time:15' here to get cross findings.
+-->
+<p><a href="index.html">lab</a> <a href="single.html">single</a></p>
+<main class="$mod:DevicePage">
+  <h1>Device</h1>
+  <div class="row $mod:DeviceRow">
+    <button class="icon-btn $mod:DesktopOnly" data-testid="device-move-button" data-device="desktop"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13"/></svg></button>
+    <button class="icon-btn $mod:Everywhere" data-testid="device-both-button"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20"/></svg></button>
+  </div>
+</main>
+</body>
+</html>

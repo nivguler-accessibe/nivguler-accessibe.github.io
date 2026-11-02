@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="lab-page" content="dashboard">
+<title></title>
+<link rel="stylesheet" href="lab.css">
+<script src="lab-boot.js"></script>
+</head>
+<body>
+<!-- Angular-style shell (_nghost / _ngcontent, ng-* classes) with React useId, Radix and Headless UI widgets inside. -->
+<app-root data-ng-app data-ng="AppRoot">
+  <div class="topbar $ng" data-ng="TopNav">
+    <a href="index.html" class="$ng">lab</a>
+    <a href="shop.html" class="$ng">shop</a>
+    <a href="blog.html" class="$ng">blog</a>
+    <a href="signup.html" class="$ng">signup</a>
+    <button id="$headless@menu-button" aria-controls="$headless@menu-items" class="icon-btn $ng" data-test-id="user-menu-button"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/></svg></button>
+    <div id="$headless@menu-items" class="$ng" style="display:none"><a href="#">Profile</a><a href="#">Logout</a></div>
+  </div>
+
+  <div class="wrap $ng" data-ng="DashboardPage">
+    <div class="big">Dashboard</div>
+
+    <!-- Radix tabs: ids change on every load, aria-controls follows them -->
+    <div class="row $sc:Tabs" data-test-id="report-tabs">
+      <div role="tablist">
+        <span role="tab" id="$radix@trigger-overview" aria-controls="$radix@content-overview" class="fake-btn $state">Overview</span>
+        <span role="tab" id="$radix@trigger-sales" aria-controls="$radix@content-sales" class="fake-btn $state">Sales</span>
+        <span role="tab" id="$radix@trigger-traffic" aria-controls="$radix@content-traffic" class="fake-btn $state">Traffic</span>
+      </div>
+    </div>
+    <div id="$radix@content-overview" role="tabpanel" class="box $sc:Panel">
+      <div class="cols">
+        <div class="card $em:Kpi" data-test-id="kpi-revenue"><span class="faint">Revenue</span><div class="medium">$12k</div><span class="chip on"></span></div>
+        <div class="card $em:Kpi" data-test-id="kpi-orders"><span class="faint">Orders</span><div class="medium">340</div><span class="chip off"></span></div>
+        <div class="card $em:Kpi"><span class="faint">Refunds</span><div class="medium">12</div><span class="chip off"></span></div>
+      </div>
+    </div>
+
+    <!-- A chart drawn with divs, no text alternative -->
+    <div class="box $em:Chart" id="sales-chart">
+      <div class="row" style="align-items:flex-end;height:80px">
+        <div style="width:20px;height:30px;background:#cde"></div>
+        <div style="width:20px;height:60px;background:#cde"></div>
+        <div style="width:20px;height:45px;background:#cde"></div>
+        <div style="width:20px;height:75px;background:#cde"></div>
+      </div>
+      <button class="icon-btn $em:ChartMenu" id="$react@chart-menu"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+    </div>
+
+    <!-- Table without headers; rows identical apart from text -->
+    <table class="data $sc:Table" data-test-id="orders-table">
+      <tr data-ng="OrderRow"><td>#1001</td><td>Alice</td><td><span class="chip on"></span></td><td><button class="icon-btn $ng"><svg viewBox="0 0 24 24"><path d="M3 17v4h4L18 10l-4-4z"/></svg></button></td></tr>
+      <tr data-ng="OrderRow"><td>#1002</td><td>Bob</td><td><span class="chip off"></span></td><td><button class="icon-btn $ng"><svg viewBox="0 0 24 24"><path d="M3 17v4h4L18 10l-4-4z"/></svg></button></td></tr>
+      <tr data-ng="OrderRow"><td>#1003</td><td>Carol</td><td><span class="chip on"></span></td><td><button class="icon-btn $ng"><svg viewBox="0 0 24 24"><path d="M3 17v4h4L18 10l-4-4z"/></svg></button></td></tr>
+    </table>
+
+    <!-- Custom checkboxes: no role, no state, generated ids -->
+    <div class="box $em:Filters" id="filters">
+      <div class="row"><span class="chip off" id="$mui@filter-paid" onclick="this.classList.toggle('on')"></span><span>Paid</span></div>
+      <div class="row"><span class="chip off" id="$mui@filter-shipped" onclick="this.classList.toggle('on')"></span><span>Shipped</span></div>
+      <div class="row"><input type="checkbox" id="$react@refunded"><span>Refunded</span></div>
+      <label for="$react@does-not-exist" class="faint">Archived</label><input type="checkbox" id="$react@archived">
+    </div>
+
+    <!-- Ember-era widget -->
+    <div id="$ember" class="sidebar ember-view">
+      <div id="$ember" class="ember-view row">
+        <a href="#" id="$ember" class="ember-view icon-link"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg></a>
+        <span id="$ember" class="ember-view faint">Add widget</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer $ng" data-ng="AppFooter"><span>© dash</span> <a href="#" tabindex="9">help</a></div>
+</app-root>
+</body>
+</html>

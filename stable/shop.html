@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="lab-page" content="shop">
+<title>Untitled</title>
+<link rel="stylesheet" href="lab.css">
+<script src="lab-boot.js"></script>
+</head>
+<body>
+<div class="topbar $mod:Topbar" data-qa="lab-nav">
+  <a href="index.html" class="$mod:navLink">lab</a>
+  <a href="single.html" class="$mod:navLink">single</a>
+  <a href="blog.html" class="$mod:navLink">blog</a>
+  <a href="dashboard.html" class="$mod:navLink">dashboard</a>
+  <a href="signup.html" class="$mod:navLink">signup</a>
+</div>
+
+<div id="$shopify@header" class="$mod:HeaderSection">
+  <div class="row wrap $mod:Header">
+    <div class="big $mod:Logo">SHOP<span class="tiny">™</span></div>
+    <input type="search" class="input $mod:Search" placeholder="search...">
+    <div class="fake-btn $mod:SearchButton" onclick="alert('search')">Go</div>
+    <a href="#" class="icon-link $mod:CartLink" data-test="header-cart"><svg viewBox="0 0 24 24"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM1 2v2h2l3.6 7.6L5.2 14A2 2 0 0 0 7 17h12v-2H7.4l1.1-2h7.5a2 2 0 0 0 1.7-1l3.6-6.5H5.2L4.3 2z"/></svg></a>
+    <a href="#" class="icon-link $mod:AccountLink" tabindex="3"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6z"/></svg></a>
+  </div>
+</div>
+
+<div class="wrap $mod:Page">
+  <div class="banner $mod:Hero $state" id="$shopify@hero" data-wrap="2">
+    <div class="medium $mod:HeroTitle">SUMMER SALE</div>
+    <span class="$mod:HeroText">Up to 70% off. Items in <span class="sale">red</span> are on sale.</span>
+    <div class="slider-track $mod:Swiper $state">
+      <div class="slide $mod:Slide">1</div><div class="slide $mod:Slide">2</div><div class="slide $mod:Slide">3</div>
+    </div>
+    <a href="#" class="icon-link $mod:SlidePrev"><svg viewBox="0 0 24 24"><path d="M16 5l-8 7 8 7z"/></svg></a>
+    <a href="#" class="icon-link $mod:SlideNext"><svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7z"/></svg></a>
+  </div>
+
+  <!-- A. Cards with a unique data-testid each (and a distinct class, so legacy keeps them apart): [data-testid="product-card-1042"] button -->
+  <div class="medium $mod:SectionTitle">Featured</div>
+  <div class="grid $mod:Grid">
+    <div class="card product-1042 $mod:ProductCard" data-testid="product-card-1042" data-vc="ProductCard">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='60'%3E%3Crect width='100' height='60' fill='%23eee'/%3E%3C/svg%3E" class="$mod:ProductImage" width="100" height="60">
+      <div class="$mod:ProductName">Red Shoes</div>
+      <div class="price $mod:Price">$40</div>
+      <button class="icon-btn $mod:WishlistButton $state"><svg viewBox="0 0 24 24"><path d="M12 21l-9-9a5 5 0 0 1 9-5 5 5 0 0 1 9 5z"/></svg></button>
+      <a href="#" class="icon-link $mod:AddToCart"><svg viewBox="0 0 24 24"><path d="M11 4h2v16h-2zM4 11h16v2H4z"/></svg></a>
+    </div>
+    <div class="card product-1043 $mod:ProductCard" data-testid="product-card-1043" data-vc="ProductCard">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='60'%3E%3Crect width='100' height='60' fill='%23eee'/%3E%3C/svg%3E" class="$mod:ProductImage" width="100" height="60">
+      <div class="$mod:ProductName">Blue Shoes</div>
+      <div class="price sale $mod:Price">$30</div>
+      <button class="icon-btn $mod:WishlistButton $state"><svg viewBox="0 0 24 24"><path d="M12 21l-9-9a5 5 0 0 1 9-5 5 5 0 0 1 9 5z"/></svg></button>
+      <a href="#" class="icon-link $mod:AddToCart"><svg viewBox="0 0 24 24"><path d="M11 4h2v16h-2zM4 11h16v2H4z"/></svg></a>
+    </div>
+    <div class="card product-1044 $mod:ProductCard" data-testid="product-card-1044" data-vc="ProductCard" data-wrap="1">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='60'%3E%3Crect width='100' height='60' fill='%23eee'/%3E%3C/svg%3E" class="$mod:ProductImage" width="100" height="60">
+      <div class="$mod:ProductName">Green Shoes</div>
+      <div class="price $mod:Price">$55</div>
+      <button class="icon-btn $mod:WishlistButton $state"><svg viewBox="0 0 24 24"><path d="M12 21l-9-9a5 5 0 0 1 9-5 5 5 0 0 1 9 5z"/></svg></button>
+      <a href="#" class="icon-link $mod:AddToCart"><svg viewBox="0 0 24 24"><path d="M11 4h2v16h-2zM4 11h16v2H4z"/></svg></a>
+    </div>
+    <div class="card product-1045 $mod:ProductCard" data-testid="product-card-1045" data-vc="ProductCard">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='60'%3E%3Crect width='100' height='60' fill='%23eee'/%3E%3C/svg%3E" class="$mod:ProductImage" width="100" height="60">
+      <div class="$mod:ProductName">Gold Shoes</div>
+      <div class="price sale $mod:Price">$99</div>
+      <button class="icon-btn $mod:WishlistButton $state"><svg viewBox="0 0 24 24"><path d="M12 21l-9-9a5 5 0 0 1 9-5 5 5 0 0 1 9 5z"/></svg></button>
+      <a href="#" class="icon-link $mod:AddToCart"><svg viewBox="0 0 24 24"><path d="M11 4h2v16h-2zM4 11h16v2H4z"/></svg></a>
+    </div>
+  </div>
+
+  <!-- B. Cards with a stable id each, in a grid with generated classes only: expected #deal-1 button -->
+  <div class="medium $mod:SectionTitle">Deals</div>
+  <div class="grid $mod:Grid">
+    <div class="card $mod:DealCard" id="deal-1"><b class="$mod:DealName">Hat</b><button class="icon-btn $mod:DealButton"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button></div>
+    <div class="card $mod:DealCard" id="deal-2"><b class="$mod:DealName">Scarf</b><button class="icon-btn $mod:DealButton"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button></div>
+    <div class="card $mod:DealCard" id="deal-3"><b class="$mod:DealName">Gloves</b><button class="icon-btn $mod:DealButton"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button></div>
+  </div>
+
+  <!-- C. Identical cards, no anchor: one legacy group (aggregated), stable null (not unique) -->
+  <div class="medium $mod:SectionTitle">More</div>
+  <div class="grid $mod:Grid">
+    <div class="card $mod:PlainCard"><span class="$mod:PlainName">Sock</span><button class="$mod:PlainButton"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button></div>
+    <div class="card $mod:PlainCard"><span class="$mod:PlainName">Belt</span><button class="$mod:PlainButton"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button></div>
+    <div class="card $mod:PlainCard"><span class="$mod:PlainName">Tie</span><button class="$mod:PlainButton"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button></div>
+  </div>
+
+  <!-- D. Two different components told apart only by generated classes: separate legacy groups, stable null -->
+  <div class="row $mod:Compare">
+    <button class="$mod:CompareAdd"><svg viewBox="0 0 24 24"><path d="M11 4h2v16h-2z"/></svg></button>
+    <button class="$mod:CompareRemove"><svg viewBox="0 0 24 24"><path d="M4 11h16v2H4z"/></svg></button>
+  </div>
+
+  <!-- E. The same pair, each inside its own stable id: #compare-left button / #compare-right button -->
+  <div class="cols $mod:CompareCols">
+    <div id="compare-left" class="$mod:CompareCol"><button class="$mod:CompareAdd"><svg viewBox="0 0 24 24"><path d="M11 4h2v16h-2z"/></svg></button></div>
+    <div id="compare-right" class="$mod:CompareCol"><button class="$mod:CompareRemove"><svg viewBox="0 0 24 24"><path d="M4 11h16v2H4z"/></svg></button></div>
+  </div>
+
+  <!-- F. Duplicate id: #promo matches two different legacy groups, so it can't anchor -->
+  <div class="cols $mod:Promos">
+    <div id="promo" class="banner $mod:PromoA"><span>Free shipping</span><a href="#" class="icon-link $mod:PromoALink"><svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7z"/></svg></a></div>
+    <div id="promo" class="banner $mod:PromoB"><span>Gift cards</span><a href="#" class="icon-link $mod:PromoBLink"><svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7z"/></svg></a></div>
+  </div>
+
+  <!-- G. Duplicate data-qa on two different components: the test attribute isn't unique -->
+  <div class="row $mod:BuyRow">
+    <span class="$mod:BuyA"><button data-qa="buy-button" class="icon-btn $mod:BuyNow"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button></span>
+    <span class="$mod:BuyB"><button data-qa="buy-button" class="icon-btn $mod:BuyLater"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button></span>
+  </div>
+
+  <!-- H. Split: identical legacy selectors (same classes, same parents), different test ids. One audit, stable null -->
+  <div class="row $mod:Colors">
+    <button class="icon-btn $mod:ColorChip" data-testid="color-red"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="#e66"/></svg></button>
+    <button class="icon-btn $mod:ColorChip" data-testid="color-green"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="#6e6"/></svg></button>
+    <button class="icon-btn $mod:ColorChip" data-testid="color-blue"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="#66e"/></svg></button>
+  </div>
+
+  <table class="data $mod:SizeTable">
+    <tr><td>S</td><td>M</td><td>L</td></tr>
+    <tr><td><span class="chip on"></span></td><td><span class="chip off"></span></td><td><span class="chip on"></span></td></tr>
+  </table>
+
+  <iframe src="about:blank" width="200" height="40" class="$mod:Reviews"></iframe>
+</div>
+
+<div class="footer $mod:Footer" id="$shopify@footer">
+  <span class="$mod:FooterText">© shop</span>
+  <a href="#" class="$mod:FooterLink">click here</a>
+  <a href="#" class="$mod:FooterLink">click here</a>
+  <a class="$mod:FooterLink" onclick="alert(1)">more</a>
+  <select class="$mod:Currency"><option>USD</option><option>EUR</option></select>
+</div>
+</body>
+</html>

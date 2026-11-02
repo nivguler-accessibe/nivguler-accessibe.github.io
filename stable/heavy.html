@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="lab-page" content="heavy">
+<title>heavy</title>
+<link rel="stylesheet" href="lab.css">
+<script src="lab-boot.js"></script>
+</head>
+<body>
+<!--
+  Time budget. config.js pages.heavy.count rows (or ?count=), each with three failing elements that need an
+  anchor (#row-N) to be unique: an icon button, an unlabeled input and an empty link.
+-->
+<div class="topbar $mod:Topbar" data-qa="lab-nav">
+  <a href="index.html" class="$mod:navLink">lab</a>
+  <a href="sneaky.html" class="$mod:navLink">sneaky</a>
+</div>
+<div class="wrap $mod:Page">
+  <div class="big $mod:Title">Heavy</div>
+  <div class="$mod:List">
+    <template data-repeat="count">
+      <div class="heavy-row $mod:Row $state" id="row-{i}" data-vc="HeavyRow">
+        <span class="faint $mod:RowLabel">Row {i}</span>
+        <button class="icon-btn $mod:RowButton"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+        <input class="input $mod:RowInput" type="text">
+        <a href="#r{i}" class="icon-link $mod:RowLink"><svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7z"/></svg></a>
+      </div>
+    </template>
+  </div>
+</div>
+</body>
+</html>

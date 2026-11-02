@@ -1,0 +1,46 @@
+/* Deliberately poor: low contrast, no focus styles, tiny targets. Only plain class names here; generated ones
+   change on every load. */
+* { outline: none !important; }
+body { font-family: Verdana, sans-serif; font-size: 13px; margin: 0; background: #fdfdfd; color: #9a9a9a; }
+a { color: #8fb8de; text-decoration: none; }
+button { cursor: pointer; }
+
+.topbar { background: #ffd84d; color: #fff; padding: 6px 12px; display: flex; gap: 12px; flex-wrap: wrap; }
+.topbar a { color: #fff6cc; font-size: 11px; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 12px; }
+.big { font-size: 26px; font-weight: bold; color: #c9c9c9; margin: 14px 0; }
+.medium { font-size: 18px; font-weight: bold; color: #b5b5b5; margin: 10px 0; }
+.faint { color: #d0d0d0; }
+.tiny { font-size: 9px; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+.card { border: 1px solid #f0f0f0; padding: 8px; background: #fff; position: relative; }
+.card .price { color: #e0e0e0; }
+.card .sale { color: #ff9a9a; }
+.icon-btn { width: 18px; height: 18px; padding: 0; border: 0; background: #eee; display: inline-flex; align-items: center; justify-content: center; }
+.icon-btn svg, .icon-link svg { width: 12px; height: 12px; fill: #bbb; }
+.icon-link { display: inline-block; width: 16px; height: 16px; }
+.fake-btn { display: inline-block; background: #9fd3a8; color: #fff; padding: 3px 8px; font-size: 11px; }
+.box { border: 1px dashed #e3e3e3; padding: 10px; margin: 10px 0; }
+.banner { background: #7ec8e3; color: #fff; padding: 10px; }
+.danger { color: #ffb3b3; }
+.footer { background: #fafafa; color: #e5e5e5; padding: 12px; font-size: 10px; margin-top: 30px; }
+.sidebar { background: #fbfbfb; padding: 8px; }
+.cols { display: flex; gap: 12px; flex-wrap: wrap; }
+.cols > * { flex: 1 1 260px; }
+table.data { border-collapse: collapse; width: 100%; }
+table.data td { border: 1px solid #f2f2f2; padding: 3px; color: #c4c4c4; }
+.input { border: 1px solid #f4f4f4; padding: 4px; color: #ccc; }
+.chip { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
+.chip.on { background: #6fcf97; }
+.chip.off { background: #eb5757; }
+.slider-track { white-space: nowrap; overflow: hidden; }
+.slide { display: inline-block; width: 140px; height: 60px; background: #eef; margin-right: 6px; color: #fff; }
+.heavy-row { display: flex; gap: 4px; align-items: center; border-bottom: 1px solid #f6f6f6; padding: 2px 0; }
+
+/* Readable on purpose: the badge isn't a test subject. */
+.lab-badge { position: fixed; right: 8px; bottom: 8px; background: #111; color: #fff; font: 12px/1.4 monospace; padding: 4px 8px; border-radius: 4px; z-index: 9999; }
+
+@media (max-width: 767px) {
+  .hide-mobile { display: none; }
+}

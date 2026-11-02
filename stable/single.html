@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="lab-page" content="single">
+<title>single</title>
+<link rel="stylesheet" href="lab.css">
+<script src="lab-boot.js"></script>
+</head>
+<body>
+<!-- A few failing elements, one per stable strategy. Expected stable values are in the README. -->
+<div class="topbar $mod:Topbar" data-qa="lab-nav">
+  <a href="index.html" class="$mod:navLink">lab</a>
+  <a href="shop.html" class="$mod:navLink">shop</a>
+  <a href="twins.html" class="$mod:navLink">twins</a>
+</div>
+
+<div class="wrap $mod:Page $state">
+  <div class="big $mod:Title">One of each</div>
+
+  <!-- 1. Test attribute -->
+  <div class="row $mod:Toolbar">
+    <button class="icon-btn $mod:IconButton $state" data-testid="cart-button" data-wrap="2"><svg viewBox="0 0 24 24"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM1 2v2h2l3.6 7.6L5.2 14A2 2 0 0 0 7 17h12v-2H7.4l1.1-2h7.5a2 2 0 0 0 1.7-1l3.6-6.5H5.2L4.3 2z"/></svg></button>
+  </div>
+
+  <!-- 2. Anchored to a stable id -->
+  <section id="newsletter" class="box $mod:Newsletter" data-vc="Newsletter">
+    <span class="$mod:NewsletterText">Follow us</span>
+    <a href="https://example.com" class="$mod:SocialLink $state" data-wrap="1"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg></a>
+  </section>
+
+  <!-- 3. Anchored to the only form -->
+  <form class="box $mod:Form" onsubmit="return false">
+    <input type="text" class="input $mod:Input" placeholder="email">
+  </form>
+
+  <!-- 4. Own stable class -->
+  <h2 class="section-title $mod:Heading"></h2>
+
+  <!-- 5. Generated id, anchored to data-qa -->
+  <div data-qa="promo" class="banner $mod:Promo">
+    <span class="$mod:PromoText">Promo</span>
+    <button id="$react@promo-close" class="icon-btn $mod:CloseButton"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="#fff"/></svg></button>
+  </div>
+
+  <!-- 6. test-id is not a recognized test attribute: anchored to the landmark instead -->
+  <aside class="sidebar $mod:Aside">
+    <button class="icon-btn $mod:IconButton" test-id="close-aside"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </aside>
+
+  <!-- 7. No class: the legacy selector uses a random data attribute -->
+  <footer id="site-footer" class="footer $mod:Footer">
+    <a href="index.html" data-rand><svg viewBox="0 0 24 24"><path d="M12 3l9 8h-3v9H6v-9H3z"/></svg></a>
+  </footer>
+
+  <!-- 8. Low contrast, stable id, random state and wrappers -->
+  <p id="notice" class="faint $mod:Notice $state" data-wrap="2">Prices may change at any time.</p>
+</div>
+</body>
+</html>
