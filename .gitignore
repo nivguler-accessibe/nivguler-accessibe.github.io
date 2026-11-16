@@ -1,2 +1,5 @@
 # Ignore nested site repos (they are separate git repositories)
 site-alpha/
+
+# Local Claude Code config (machine-specific paths; this repo is served publicly)
+.claude/
