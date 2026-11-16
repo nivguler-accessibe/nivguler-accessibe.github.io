@@ -70,6 +70,31 @@
       </div>
     </div>
   </div>
+
+  <!-- 5. Join flip: two marked steps (the #promo-zone anchor and a tile's stable class) are adjacent on some loads and
+       have a wrapper between them on others, so "#promo-zone > .promo-tile--sale > button" and
+       "#promo-zone .promo-tile--sale > button" alternate unless marked steps are always joined by a descendant space. -->
+  <section id="promo-zone" class="box $mod:PromoZone">
+    <div class="row promo-tile promo-tile--sale $mod:Tile" data-wrap="1">
+      <span class="faint $mod:TileText">Sale</span>
+      <button class="icon-btn $mod:TileGo"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="row promo-tile promo-tile--new $mod:Tile" data-wrap="1">
+      <span class="faint $mod:TileText">New</span>
+      <button class="icon-btn $mod:TileGo"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+  <!-- The same tiles in a second zone, so a tile's class alone isn't unique and the chain needs the zone's id. -->
+  <section id="promo-archive" class="box $mod:PromoZone">
+    <div class="row promo-tile promo-tile--sale $mod:Tile" data-wrap="1">
+      <span class="faint $mod:TileText">Last sale</span>
+      <button class="icon-btn $mod:TileGo"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="row promo-tile promo-tile--new $mod:Tile" data-wrap="1">
+      <span class="faint $mod:TileText">Last new</span>
+      <button class="icon-btn $mod:TileGo"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
 </div>
 </body>
 </html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="lab-page" content="carousel">
+<title>carousel</title>
+<link rel="stylesheet" href="lab.css">
+<style>
+  .swiper, .slick-list, slideshow-component { overflow: hidden; }
+  .swiper-wrapper, .slick-track, .slideshow { display: flex; gap: 6px; }
+  .swiper-slide, .slick-slide, .slideshow__slide { flex: 0 0 140px; height: 70px; background: #eef; color: #fff; position: relative; }
+  .swiper-pagination-bullet { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ddd; margin: 0 2px; }
+  .swiper-button-prev, .swiper-button-next { display: inline-block; width: 14px; height: 14px; background: #eee; }
+  .slick-dots { display: flex; gap: 4px; list-style: none; padding: 0; }
+  .slick-dots button { font-size: 9px; color: #ccc; background: #fafafa; border: 0; }
+  .slider-counter__link { display: inline-block; width: 10px; height: 10px; }
+  .slider-counter__link .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ddd; }
+</style>
+<script src="lab-boot.js"></script>
+</head>
+<body>
+<!-- Carousels as their libraries leave the DOM after init (carousel.js, seeded): the active slide differs per load,
+     state classes move with it, clones duplicate slides, Swiper 9+ reorders slides, and Swiper's wrapper id is
+     random on every init. -->
+<div class="topbar $mod:Topbar" data-qa="lab-nav">
+  <a href="index.html" class="$mod:navLink">lab</a>
+  <a href="shopify.html" class="$mod:navLink">shopify</a>
+  <a href="wrappers.html" class="$mod:navLink">wrappers</a>
+</div>
+
+<div class="wrap $mod:Page">
+  <div class="big $mod:Title">Carousels</div>
+
+  <!-- 1. Swiper 6–8, loop mode: duplicate slides at both ends -->
+  <div class="swiper hero-swiper" data-carousel="swiper-duplicate">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><a href="/collections/new" class="slide-link"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='70'/%3E" width="140" height="70"></a><span class="slide-caption faint">New in</span></div>
+      <div class="swiper-slide"><a href="/collections/sale" class="slide-link"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='70'/%3E" width="140" height="70"></a><span class="slide-caption faint">Sale</span></div>
+      <div class="swiper-slide"><a href="/collections/kids" class="slide-link"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='70'/%3E" width="140" height="70"></a><span class="slide-caption faint">Kids</span></div>
+    </div>
+    <div class="swiper-button-prev" role="button" tabindex="0"></div>
+    <div class="swiper-button-next" role="button" tabindex="0"></div>
+    <div class="swiper-pagination">
+      <span class="swiper-pagination-bullet" role="button" tabindex="0"></span>
+      <span class="swiper-pagination-bullet" role="button" tabindex="0"></span>
+      <span class="swiper-pagination-bullet" role="button" tabindex="0"></span>
+    </div>
+  </div>
+
+  <!-- 2. Swiper 9+, loop mode: slides are moved so the active one has neighbours (DOM order changes) -->
+  <section id="testimonials" class="box">
+    <div class="swiper testimonials-swiper" data-carousel="swiper-rotate">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><p class="quote faint">Great shoes.</p><button class="icon-btn quote-more"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="swiper-slide"><p class="quote faint">Fast shipping.</p><button class="icon-btn quote-more"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="swiper-slide"><p class="quote faint">Would buy again.</p><button class="icon-btn quote-more"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="swiper-slide"><p class="quote faint">Comfy.</p><button class="icon-btn quote-more"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+      </div>
+      <div class="swiper-button-prev" role="button" tabindex="0"></div>
+      <div class="swiper-button-next" role="button" tabindex="0"></div>
+    </div>
+  </section>
+
+  <!-- 3. Slick: slick-cloned copies, index ids, slick-active / slick-current, icon-only arrows -->
+  <div class="brands-slider" data-carousel="slick">
+    <button type="button" class="slick-prev slick-arrow icon-btn"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div class="slick-list">
+      <div class="slick-track">
+        <div><a href="/brands/a" class="brand-logo"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40'/%3E" width="80" height="40"></a></div>
+        <div><a href="/brands/b" class="brand-logo"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40'/%3E" width="80" height="40"></a></div>
+        <div><a href="/brands/c" class="brand-logo"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40'/%3E" width="80" height="40"></a></div>
+      </div>
+    </div>
+    <button type="button" class="slick-next slick-arrow icon-btn"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+    <ul class="slick-dots" role="tablist">
+      <li role="presentation"><button type="button" role="tab">1</button></li>
+      <li role="presentation"><button type="button" role="tab">2</button></li>
+      <li role="presentation"><button type="button" role="tab">3</button></li>
+    </ul>
+  </div>
+
+  <!-- 4. Shopify Dawn slideshow: slide ids built from the template id, aria-hidden and the active counter dot -->
+  <div id="shopify-section-$tpl__slideshow" class="shopify-section">
+    <slideshow-component class="slider-mobile-gutter" role="region" aria-roledescription="Carousel">
+      <div class="slideshow banner" id="Slider-$tpl__slideshow">
+        <div class="slideshow__slide grid__item" id="Slide-$tpl__slideshow-1" role="group" aria-roledescription="Slide"><h2 class="banner__heading faint">Summer</h2><a href="/collections/summer" class="banner__link icon-link"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></a></div>
+        <div class="slideshow__slide grid__item" id="Slide-$tpl__slideshow-2" role="group" aria-roledescription="Slide"><h2 class="banner__heading faint">Winter</h2><a href="/collections/winter" class="banner__link icon-link"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></a></div>
+      </div>
+      <div class="slideshow__controls slider-buttons row">
+        <button type="button" class="slider-button slider-button--prev icon-btn" name="previous"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <div class="slider-counter slider-counter--dots">
+          <a href="#Slide-$tpl__slideshow-1" class="slider-counter__link slider-counter__link--dots link"><span class="dot"></span></a>
+          <a href="#Slide-$tpl__slideshow-2" class="slider-counter__link slider-counter__link--dots link"><span class="dot"></span></a>
+        </div>
+        <button type="button" class="slider-button slider-button--next icon-btn" name="next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </slideshow-component>
+  </div>
+</div>
+<script src="carousel.js"></script>
+</body>
+</html>
