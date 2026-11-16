@@ -6,6 +6,8 @@
  *   [data-carousel="swiper-rotate"]     Swiper 9+ loop: slides are moved so the active one has neighbours
  *   [data-carousel="slick"]             Slick: slick-cloned copies, index ids, slick-active / slick-current
  *   [data-carousel="dawn"]              Dawn slideshow-component: aria-hidden and the active counter dot
+ *   [data-carousel="tiny"]              tiny-slider: tns<N>-* wrapper and item ids, tns-slide-active, clones
+ *   [data-carousel="owl"]               Owl Carousel 2: owl-item wrappers with active / center / cloned, icon-only dots
  * Every library also gets a random instance id on each init (Swiper's wrapper id).
  */
 (function () {
@@ -117,6 +119,89 @@
     });
   }
 
+  function el(tag, className, attrs) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    Object.keys(attrs || {}).forEach(function (name) { node.setAttribute(name, attrs[name]); });
+    return node;
+  }
+
+  // tiny-slider: wraps the container (tns1-ow > tns1-mw > tns1-iw), ids every item tns<N>-item<k>, clones for loop.
+  // N counts inits on the page, so a slider that inits first (lazy, conditional) shifts it: varied per load here.
+  function tiny(root, key) {
+    var items = Array.prototype.slice.call(root.children);
+    var n = items.length;
+    var current = Math.floor(rngFor('state', key)() * n);
+    var id = 'tns' + (1 + Math.floor(rngFor('ids', key)() * 3));
+    var outer = el('div', 'tns-outer', { id: id + '-ow' });
+    var live = el('div', 'tns-liveregion tns-visually-hidden', { 'aria-atomic': 'true', 'aria-live': 'polite' });
+    live.textContent = 'slide ' + (current + 1) + ' to ' + Math.min(current + 2, n) + ' of ' + n;
+    var ovh = el('div', 'tns-ovh', { id: id + '-mw' });
+    var inner = el('div', 'tns-inner', { id: id + '-iw' });
+    root.parentNode.insertBefore(outer, root);
+    outer.appendChild(live);
+    outer.appendChild(ovh);
+    ovh.appendChild(inner);
+    inner.appendChild(root);
+    root.id = id;
+    root.classList.add('tns-slider', 'tns-carousel', 'tns-subpixel', 'tns-calc', 'tns-horizontal');
+    items.forEach(function (item, k) {
+      var active = k === current || k === (current + 1) % n;
+      item.id = id + '-item' + k;
+      item.classList.add('tns-item');
+      item.classList.toggle('tns-slide-active', active);
+      item.setAttribute('aria-hidden', String(!active));
+      if (!active) item.setAttribute('tabindex', '-1');
+    });
+    root.insertBefore(clone(items[n - 1], 'tns-slide-cloned'), items[0]);
+    root.appendChild(clone(items[0], 'tns-slide-cloned'));
+    var nav = el('div', 'tns-nav', { 'aria-label': 'Carousel Pagination' });
+    items.forEach(function (item, k) {
+      var dot = el('button', k === current ? 'tns-nav-active' : '', { 'aria-controls': id, 'data-nav': String(k), type: 'button' });
+      nav.appendChild(dot);
+    });
+    outer.appendChild(nav);
+  }
+
+  // Owl Carousel 2: every item is wrapped in div.owl-item inside owl-stage-outer > owl-stage; active / center / cloned
+  // are on those wrappers, and the dots are icon-only buttons.
+  function owl(root, key) {
+    var items = Array.prototype.slice.call(root.children);
+    var n = items.length;
+    var center = Math.floor(rngFor('state', key)() * n);
+    var outer = el('div', 'owl-stage-outer');
+    var stage = el('div', 'owl-stage', { style: 'transform: translate3d(-' + center * 146 + 'px, 0, 0)' });
+    outer.appendChild(stage);
+    var wrap = function (item, classes) {
+      var w = el('div', classes);
+      w.appendChild(item);
+      return w;
+    };
+    stage.appendChild(wrap(clone(items[n - 1], 'owl-clone-content'), 'owl-item cloned'));
+    items.forEach(function (item, k) {
+      var rel = (k - center + n) % n;
+      var classes = 'owl-item' + (rel <= 1 || rel === n - 1 ? ' active' : '') + (rel === 0 ? ' center' : '');
+      stage.appendChild(wrap(item, classes));
+    });
+    stage.appendChild(wrap(clone(items[0], 'owl-clone-content'), 'owl-item cloned'));
+    root.appendChild(outer);
+    var nav = el('div', 'owl-nav');
+    ['owl-prev', 'owl-next'].forEach(function (cls) {
+      var b = el('button', cls, { role: 'presentation', type: 'button' });
+      b.innerHTML = '<span aria-hidden="true">' + (cls === 'owl-prev' ? '‹' : '›') + '</span>';
+      nav.appendChild(b);
+    });
+    var dots = el('div', 'owl-dots');
+    items.forEach(function (item, k) {
+      var dot = el('button', 'owl-dot' + (k === center ? ' active' : ''), { role: 'button' });
+      dot.appendChild(el('span'));
+      dots.appendChild(dot);
+    });
+    root.appendChild(nav);
+    root.appendChild(dots);
+    root.classList.add('owl-loaded', 'owl-drag');
+  }
+
   function run() {
     var slickInstance = 0;
     document.querySelectorAll('[data-carousel]').forEach(function (root, i) {
@@ -125,6 +210,8 @@
       if (mode.indexOf('swiper') === 0) swiper(root, key, mode);
       else if (mode === 'slick') slick(root, key, slickInstance++);
       else if (mode === 'dawn') dawn(root, key);
+      else if (mode === 'tiny') tiny(root, key);
+      else if (mode === 'owl') owl(root, key);
       root.removeAttribute('data-carousel');
     });
   }
