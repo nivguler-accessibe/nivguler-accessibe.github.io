@@ -55,7 +55,14 @@ failing element changes between seeds, and the stable values below don't.
 | `twins.html` | The 1:1 guard (`match_ambiguous`) | `[data-testid="twin-a"]`, `[data-testid="twin-b"]` |
 | `device.html` | Device moves (baseline) | `[data-testid="device-move-button"]`, `[data-testid="device-both-button"]` |
 | `sneaky.html` | Tokens the filters miss: letters-only hashes, one-digit hashes, styled-components without its `<style>` signal, `swiper-initialized`, letters-only ids and test ids | Change on every load: expect churn |
-| `heavy.html` | Time budget: `count` rows × 3 failing elements (default 2500) | `#row-N button` / `input` / `a` until the budget runs out, then `time_budget` |
+
+The same values are in `lab-expect.json`, which the local harness checks on every run.
+
+### Local harness
+
+The accessFlow repo's `scripts/stable-selector-harness` runs the auditor against this folder, without scans. To pair
+findings across seeds, `lab.js` gives every element `data-aflw-lab="<page>-<n>"` before anything churns. The auditor
+and both selector builders ignore `data-aflw-*`, so the attribute changes no selector.
 
 ### Recipes
 
@@ -77,7 +84,6 @@ To reset, set `seed` to a new string and `swap: false`.
 
 **Device move.** Scan with `device: { deviceMove: 'desktop', seedMode: 'time:15' }`, then with `deviceMove: 'both'`.
 
-**Time budget.** Scan `heavy.html`; raise `count` if `builder_over_budget` stays 0.
 
 **Only one category churning.** `defaults.off: ['ids', 'attrs', 'vue', 'angular', 'wrap', 'state']` leaves only hash
 classes changing, and so on.

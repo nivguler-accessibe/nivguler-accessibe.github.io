@@ -1,0 +1,38 @@
+{
+  "_doc": "Stable values the builder should produce on every seed (README, 'Pages and expected stable values'). Read by the local harness in the accessFlow repo (scripts/stable-selector-harness). A string applies to both devices; { value, device } to one.",
+  "pages": {
+    "single.html": [
+      "[data-testid=\"cart-button\"]",
+      "#newsletter a",
+      "input",
+      "h2",
+      "[data-qa=\"promo\"] button",
+      "aside button",
+      "#site-footer a",
+      "p"
+    ],
+    "shop.html": [
+      "[data-testid=\"product-card-1042\"] button",
+      "[data-testid=\"product-card-1042\"] a",
+      "#deal-1 button",
+      "#compare-left button"
+    ],
+    "blog.html": ["[data-cy=\"like-post-7\"]", "[data-cy=\"header-search\"]"],
+    "dashboard.html": [
+      "[data-test-id=\"user-menu-button\"]",
+      "[data-test-id=\"orders-table\"] button",
+      "#sales-chart button"
+    ],
+    "signup.html": [
+      "[data-testid=\"email-input\"]",
+      "[data-qa=\"phone-input\"]",
+      "[data-test=\"country-select\"]",
+      "#captcha input"
+    ],
+    "twins.html": ["[data-testid=\"twin-a\"]", "[data-testid=\"twin-b\"]"],
+    "device.html": [
+      { "value": "[data-testid=\"device-move-button\"]", "device": "desktop" },
+      "[data-testid=\"device-both-button\"]"
+    ]
+  }
+}

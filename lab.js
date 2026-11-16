@@ -24,6 +24,8 @@
  *   data-swap-testid="v"     becomes data-testid="v" when swap is on
  *   <template data-repeat="count">  repeated N times (a number, or an option name); {i} is the index
  * Elements that already have a class or an id also get a random data-* attribute every third element.
+ * Every element gets data-aflw-lab="<page>-<n>" first: a fixed identity for the local harness (accessFlow repo,
+ * scripts/stable-selector-harness).
  */
 (function () {
   'use strict';
@@ -217,6 +219,14 @@
     });
   }
 
+  // Ground truth for the local harness: one id per element, set before anything churns, so it's the same on every
+  // seed and both devices. The auditor and both selector builders ignore data-aflw-* attributes.
+  function tagLabIds() {
+    document.body.querySelectorAll('*').forEach(function (el, i) {
+      if (!el.closest('template')) el.setAttribute('data-aflw-lab', page + '-' + i);
+    });
+  }
+
   function applyDevice() {
     var desktop = window.matchMedia('(min-width: 768px)').matches;
     document.querySelectorAll('[data-device]').forEach(function (el) {
@@ -334,6 +344,7 @@
 
   function run() {
     expandTemplates();
+    tagLabIds();
     applyDevice();
     applySwap();
     applyWrappers();

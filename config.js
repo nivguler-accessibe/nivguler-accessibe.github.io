@@ -13,8 +13,6 @@ window.LAB_CONFIG = {
     twins: { seed: 'one', swap: false },
     // 'desktop': the device-move button exists only at >= 768px. 'both': it exists on both devices.
     device: { deviceMove: 'desktop' },
-    // Rows on the heavy page; each row has 3 failing elements.
-    heavy: { count: 2500 },
     sneaky: { presets: false },
   },
 };
