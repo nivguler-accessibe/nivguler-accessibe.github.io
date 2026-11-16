@@ -7,7 +7,7 @@
       "input",
       "h2",
       "[data-qa=\"promo\"] button",
-      "aside button",
+      "aside.sidebar button",
       "#site-footer a",
       "p"
     ],
@@ -27,7 +27,7 @@
       "[data-testid=\"email-input\"]",
       "[data-qa=\"phone-input\"]",
       "[data-test=\"country-select\"]",
-      "#captcha input"
+      "div#captcha"
     ],
     "twins.html": ["[data-testid=\"twin-a\"]", "[data-testid=\"twin-b\"]"],
     "device.html": [

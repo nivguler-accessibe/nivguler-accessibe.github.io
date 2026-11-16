@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="lab-page" content="shopify">
+<title>shopify</title>
+<link rel="stylesheet" href="lab.css">
+<script src="lab-boot.js"></script>
+</head>
+<body>
+<!-- A Shopify (Dawn-style) product page after a template update: only the template id (template--<14 digits>) and the
+     section-group ids (sections--<14 digits>) change between seeds. config.js freezes every other category here.
+     Ids, classes and data-section* attributes built from them are what churns; custom elements, theme classes and app
+     block ids stay. -->
+<div id="shopify-section-$group__announcement-bar" class="shopify-section shopify-section-group-header-group announcement-bar-section">
+  <div class="announcement-bar color-scheme-4 gradient" role="region">
+    <p class="announcement-bar__message faint">Free shipping over $50</p>
+  </div>
+</div>
+
+<div id="shopify-section-$group__header" class="shopify-section shopify-section-group-header-group section-header">
+  <sticky-header class="header-wrapper color-scheme-1 gradient">
+    <header class="header header--middle-left page-width topbar">
+      <header-drawer data-breakpoint="tablet">
+        <details id="Details-menu-drawer-container" class="menu-drawer-container">
+          <summary class="header__icon header__icon--menu header__icon--summary"><svg viewBox="0 0 24 24" class="icon icon-hamburger"><path d="M3 6h18M3 12h18M3 18h18"/></svg></summary>
+        </details>
+      </header-drawer>
+      <a href="/" class="header__heading-link link link--text focus-inset"><span class="h2">Lab Store</span></a>
+      <div class="header__icons">
+        <details-modal class="header__search">
+          <details><summary class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle"><svg viewBox="0 0 24 24" class="icon icon-search"><circle cx="11" cy="11" r="7"/></svg></summary></details>
+        </details-modal>
+        <a href="/account/login" class="header__icon header__icon--account link focus-inset small-hide"><svg viewBox="0 0 24 24" class="icon icon-account"><circle cx="12" cy="8" r="4"/></svg></a>
+        <a href="/cart" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble"><svg viewBox="0 0 24 24" class="icon icon-cart-empty"><path d="M3 4h2l2 12h12"/></svg></a>
+      </div>
+    </header>
+  </sticky-header>
+</div>
+
+<main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+  <section id="shopify-section-$tpl__main" class="shopify-section section">
+    <section id="MainProduct-$tpl__main" class="page-width section-$tpl__main-padding wrap" data-section="$tpl__main">
+      <product-info id="ProductInfo-$tpl__main" class="product product--large grid" data-section="$tpl__main">
+        <div class="product__media-wrapper">
+          <media-gallery id="MediaGallery-$tpl__main" role="region" class="product__column-sticky">
+            <ul id="Slider-Gallery-$tpl__main" class="product__media-list">
+              <li id="Slide-$tpl__main-31882345" class="product__media-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='120'/%3E" width="200" height="120"></li>
+              <li id="Slide-$tpl__main-31882346" class="product__media-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='120'/%3E" width="200" height="120"></li>
+            </ul>
+            <button type="button" class="slider-button slider-button--next icon-btn" name="next"><svg viewBox="0 0 24 24" class="icon icon-caret"><path d="M9 6l6 6-6 6"/></svg></button>
+          </media-gallery>
+        </div>
+
+        <div id="ProductInfo-$tpl__main-details" class="product__info-wrapper">
+          <div class="product__title"><h1 class="medium">Lab Sneaker</h1></div>
+          <div id="price-$tpl__main" class="price-container"><span class="price-item price-item--regular faint">$89.00</span></div>
+
+          <variant-selects id="variant-selects-$tpl__main" data-section="$tpl__main" class="row">
+            <fieldset class="js product-form__input product-form__input--pill">
+              <legend class="form__label">Size</legend>
+              <input type="radio" id="$tpl__main-1-0" name="Size-1" value="40" checked>
+              <span class="chip size-swatch" onclick="this.classList.toggle('on')"></span>
+              <input type="radio" id="$tpl__main-1-1" name="Size-1" value="41">
+              <span class="chip size-swatch" onclick="this.classList.toggle('on')"></span>
+            </fieldset>
+          </variant-selects>
+
+          <div id="Quantity-Form-$tpl__main" class="product-form__input product-form__quantity">
+            <quantity-input class="quantity row">
+              <button class="quantity__button icon-btn" name="minus" type="button"><svg viewBox="0 0 24 24" class="icon icon-minus"><path d="M5 12h14"/></svg></button>
+              <input class="quantity__input input" type="number" name="quantity" id="Quantity-$tpl__main" min="1" value="1" form="product-form-$tpl__main">
+              <button class="quantity__button icon-btn" name="plus" type="button"><svg viewBox="0 0 24 24" class="icon icon-plus"><path d="M12 5v14M5 12h14"/></svg></button>
+            </quantity-input>
+          </div>
+
+          <product-form class="product-form" data-section-id="$tpl__main">
+            <form method="post" action="/cart/add" id="product-form-$tpl__main" class="form" novalidate="novalidate">
+              <div class="product-form__buttons">
+                <div id="ProductSubmitButton-$tpl__main" class="product-form__submit button fake-btn" onclick="alert('added')">Add to cart</div>
+              </div>
+            </form>
+          </product-form>
+
+          <div id="shopify-block-AbVhKdk1zM3pFQ0tTd__judge_me_reviews_preview_bxQtPy" class="shopify-block shopify-app-block">
+            <div class="jdgm-widget jdgm-preview-badge"><span class="jdgm-prev-badge__text faint">No reviews yet</span>
+              <a href="#" class="jdgm-write-rev-link icon-link"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-6 5 2 7-6-4-6 4 2-7-6-5h7z"/></svg></a></div>
+          </div>
+
+          <details id="Details-collapsible-row-1-$tpl__main" class="product__accordion accordion">
+            <summary><div class="summary__title"><span class="accordion__title faint">Shipping</span></div></summary>
+            <div class="accordion__content" id="ProductAccordion-collapsible-row-1-$tpl__main"><p>Ships in 2 days.</p></div>
+          </details>
+        </div>
+      </product-info>
+    </section>
+  </section>
+
+  <section id="shopify-section-$tpl__related-products" class="shopify-section section">
+    <product-recommendations class="related-products page-width section-$tpl__related-products-padding wrap" data-section-id="$tpl__related-products">
+      <h2 class="related-products__heading medium">You may also like</h2>
+      <ul class="grid product-grid" role="list">
+        <li class="grid__item">
+          <div class="card-wrapper product-card-wrapper card">
+            <a href="/products/runner" id="CardLink-$tpl__related-products-8811" class="full-unstyled-link"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='80'/%3E" width="120" height="80"></a>
+            <span class="price-item faint">$59.00</span>
+            <button id="quick-add-$tpl__related-products8811-submit" type="button" class="quick-add__submit icon-btn"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </li>
+        <li class="grid__item">
+          <div class="card-wrapper product-card-wrapper card">
+            <a href="/products/trail" id="CardLink-$tpl__related-products-8812" class="full-unstyled-link"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='80'/%3E" width="120" height="80"></a>
+            <span class="price-item faint">$79.00</span>
+            <button id="quick-add-$tpl__related-products8812-submit" type="button" class="quick-add__submit icon-btn"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </li>
+      </ul>
+    </product-recommendations>
+  </section>
+</main>
+
+<div id="shopify-section-$group__footer" class="shopify-section shopify-section-group-footer-group">
+  <footer class="footer color-scheme-1 gradient section-$group__footer-padding">
+    <div class="footer-block--newsletter">
+      <form method="post" action="/contact#ContactFooter" id="ContactFooter" class="footer__newsletter newsletter-form">
+        <input id="NewsletterForm--$group__footer" type="email" name="contact[email]" class="field__input input" placeholder="Email">
+        <button type="submit" class="newsletter-form__button field__button icon-btn" name="commit" id="Subscribe"><svg viewBox="0 0 24 24" class="icon icon-arrow"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </form>
+    </div>
+    <ul class="footer__list-social list-social row" role="list">
+      <li class="list-social__item"><a href="https://instagram.com" class="link list-social__link icon-link"><svg viewBox="0 0 24 24" class="icon icon-instagram"><rect x="4" y="4" width="16" height="16" rx="4"/></svg></a></li>
+      <li class="list-social__item"><a href="https://facebook.com" class="link list-social__link icon-link"><svg viewBox="0 0 24 24" class="icon icon-facebook"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v8h4v-8h3l1-4h-4V8z"/></svg></a></li>
+    </ul>
+  </footer>
+</div>
+</body>
+</html>

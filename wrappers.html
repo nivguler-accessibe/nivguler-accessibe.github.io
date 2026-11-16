@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="lab-page" content="wrappers">
+<title>wrappers</title>
+<link rel="stylesheet" href="lab.css">
+<script src="lab-boot.js"></script>
+</head>
+<body>
+<!-- Wrappers between a stable anchor and the failing element's parents: data-wrap adds 0..N <div>s above the marked
+     element on each load, so a " > " chain from the anchor breaks while a descendant join would hold. -->
+<div class="topbar $mod:Topbar" data-qa="lab-nav">
+  <a href="index.html" class="$mod:navLink">lab</a>
+  <a href="shop.html" class="$mod:navLink">shop</a>
+  <a href="shopify.html" class="$mod:navLink">shopify</a>
+</div>
+
+<div class="wrap $mod:Page">
+  <div class="big $mod:Title">Wrappers</div>
+
+  <!-- 1. Test-attribute anchor; two icon buttons, so "anchor button" isn't unique; wrappers above the action row -->
+  <div class="grid $mod:Grid">
+    <div class="card $mod:Card" data-testid="product-card-2001">
+      <div class="$mod:Media" data-wrap="2"><a href="#" class="icon-link $mod:MediaLink"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/></svg></a></div>
+      <div class="row actions $mod:Actions" data-wrap="2">
+        <button class="icon-btn $mod:Wish"><svg viewBox="0 0 24 24"><path d="M12 21l-9-9a5 5 0 0 1 9-6 5 5 0 0 1 9 6z"/></svg></button>
+        <button class="icon-btn $mod:Compare"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/></svg></button>
+      </div>
+    </div>
+    <div class="card $mod:Card" data-testid="product-card-2002">
+      <div class="$mod:Media" data-wrap="2"><a href="#" class="icon-link $mod:MediaLink"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/></svg></a></div>
+      <div class="row actions $mod:Actions" data-wrap="2">
+        <button class="icon-btn $mod:Wish"><svg viewBox="0 0 24 24"><path d="M12 21l-9-9a5 5 0 0 1 9-6 5 5 0 0 1 9 6z"/></svg></button>
+        <button class="icon-btn $mod:Compare"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Id anchor; hashed intermediate parents (filtered, so they become plain "div" steps) plus wrappers -->
+  <section id="filters" class="box $mod:Filters">
+    <div class="$mod:FilterGroup" data-wrap="1">
+      <div class="row $mod:FilterRow">
+        <span class="chip $mod:Swatch" onclick="this.classList.toggle('on')"></span>
+        <input type="checkbox" class="$mod:FilterCheck">
+      </div>
+    </div>
+    <div class="$mod:FilterGroup" data-wrap="1">
+      <div class="row $mod:FilterRow">
+        <input type="range" class="$mod:PriceRange">
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Landmark anchor (the only nav), wrappers around the list items -->
+  <nav class="$mod:Breadcrumbs">
+    <ol class="row $mod:Crumbs">
+      <li data-wrap="1"><a href="index.html" class="$mod:Crumb"><svg viewBox="0 0 24 24"><path d="M12 3l9 8h-3v9H6v-9H3z"/></svg></a></li>
+      <li data-wrap="1"><a href="#" class="$mod:Crumb faint">Shoes</a></li>
+    </ol>
+  </nav>
+
+  <!-- 4. Stable class anchor, deep chain with wrappers at two levels -->
+  <div class="box newsletter-signup $mod:Signup">
+    <div class="$mod:SignupInner" data-wrap="1">
+      <div class="$mod:SignupField" data-wrap="1">
+        <input type="email" class="input $mod:SignupInput" placeholder="you@example.com">
+        <button class="icon-btn $mod:SignupGo"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

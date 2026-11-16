@@ -4,7 +4,8 @@
 // seed      null: a new random seed on every page load (every refresh churns). A string: frozen, reproducible values.
 // seedMode  'load' (default), or 'time:<minutes>': one seed per time window, so the desktop and mobile scans of a page
 //           usually get the same values (with 'load' they never do, so nothing is found on both devices).
-// off       categories to freeze (they keep a constant value): 'hash', 'state', 'ids', 'attrs', 'vue', 'angular', 'wrap'.
+// off       categories to freeze (they keep a constant value): 'hash', 'state', 'ids', 'attrs', 'vue', 'angular', 'wrap',
+//           'template' (Shopify template--… / sections--… ids).
 // presets   false: don't add <style data-styled> / <style data-emotion>, so the scanner can't detect those frameworks.
 window.LAB_CONFIG = {
   defaults: { seed: null, seedMode: 'load', off: [], presets: true },
@@ -14,5 +15,7 @@ window.LAB_CONFIG = {
     // 'desktop': the device-move button exists only at >= 768px. 'both': it exists on both devices.
     device: { deviceMove: 'desktop' },
     sneaky: { presets: false },
+    // A template update: only the Shopify template and section-group ids change between loads.
+    shopify: { off: ['hash', 'state', 'ids', 'attrs', 'vue', 'angular', 'wrap'] },
   },
 };

@@ -35,6 +35,8 @@ All values come from a seed, so any load can be replayed. The seed is shown in t
   deploy sees it. Per page: `seed` (`null` = new on every load), `seedMode` (`'time:15'` = one seed per 15 minutes, so
   desktop and mobile agree), `off` (freeze categories: `hash`, `state`, `ids`, `attrs`, `vue`, `angular`, `wrap`),
   `presets`, and page-specific options below.
+- **Template tokens** (`shopify.html`): `$tpl` → `template--<14 digits>` and `$group` → `sections--<14 digits>`, one value per
+  page, also inside classes and `data-section*` values (`section-$tpl__main-padding`). Category `template`.
 - **Browser:** `?seed=abc`, `?off=hash,ids`, `?churn=0` (freeze all), `?swap=1`, `?count=500`, `?device=both`,
   `?presets=0`, `?badge=0`.
 
@@ -47,14 +49,16 @@ failing element changes between seeds, and the stable values below don't.
 
 | Page | What it covers | Stable values |
 |---|---|---|
-| `single.html` | One failing element per strategy. Use it for the dismiss test | `[data-testid="cart-button"]`, `#newsletter a`, `input` (in the only form), `h2`, `[data-qa="promo"] button`, `aside button` (`test-id` is ignored), `#site-footer a` (legacy uses a random `data-*`), `p` |
+| `single.html` | One failing element per strategy. Use it for the dismiss test | `[data-testid="cart-button"]`, `#newsletter a`, `input` (in the only form), `h2`, `[data-qa="promo"] button`, `aside.sidebar button` (`test-id` is ignored; the class beats a bare landmark, which a widget's second `aside` would break), `#site-footer a` (legacy uses a random `data-*`), `p` |
 | `shop.html` | Uniqueness and anchoring | A: `[data-testid="product-card-1042"] button` / `a`. B: `#deal-1 button`. C: identical cards, no anchor → null. D: two components told apart only by hashes → null. E: same pair under ids → `#compare-left button`. F: duplicate `id="promo"` → null. G: duplicate `data-qa` → null. H: same legacy, different test ids → split (null) |
 | `blog.html` | Vue: `data-v-*` everywhere, `data-cy` hooks | `[data-cy="like-post-7"]`, `[data-cy="header-search"]`; the post without `data-cy` → null |
 | `dashboard.html` | Angular shell, Radix, Headless UI, React `useId`, Ember, MUI ids, `data-test-id` | `[data-test-id="user-menu-button"]`, `[data-test-id="orders-table"] button`, `#sales-chart button`; inputs with generated ids only → null |
-| `signup.html` | Forms; Next.js, styled-components, Emotion | `[data-testid="email-input"]`, `[data-qa="phone-input"]`, `[data-test="country-select"]`, `#captcha input`; inputs with only `name` → null |
+| `signup.html` | Forms; Next.js, styled-components, Emotion | `[data-testid="email-input"]`, `[data-qa="phone-input"]`, `[data-test="country-select"]`, `div#captcha` (the engine reports the captcha container, not its input); inputs with only `name` → null |
 | `twins.html` | The 1:1 guard (`match_ambiguous`) | `[data-testid="twin-a"]`, `[data-testid="twin-b"]` |
 | `device.html` | Device moves (baseline) | `[data-testid="device-move-button"]`, `[data-testid="device-both-button"]` |
 | `sneaky.html` | Tokens the filters miss: letters-only hashes, one-digit hashes, styled-components without its `<style>` signal, `swiper-initialized`, letters-only ids and test ids | Change on every load: expect churn |
+| `wrappers.html` | 0–2 wrapper `<div>`s between a stable anchor (test id, id, the only `nav`, a stable class) and the failing element's parents | A ` > ` chain from the anchor breaks; a descendant join holds |
+| `shopify.html` | A Dawn-style product page after a template update. Only `template--<14 digits>` and `sections--<14 digits>` change (ids, `section-…-padding` classes, `data-section*`); custom elements, theme classes and app block ids stay. `config.js` freezes every other category | Values built from custom elements and theme classes hold; values using a template id churn |
 
 The same values are in `lab-expect.json`, which the local harness checks on every run.
 

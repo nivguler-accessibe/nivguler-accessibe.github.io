@@ -30,7 +30,7 @@
 (function () {
   'use strict';
 
-  var CATEGORIES = ['hash', 'state', 'ids', 'attrs', 'vue', 'angular', 'wrap'];
+  var CATEGORIES = ['hash', 'state', 'ids', 'attrs', 'vue', 'angular', 'wrap', 'template'];
   var config = window.LAB_CONFIG || {};
   var params = new URLSearchParams(location.search);
   var pageMeta = document.querySelector('meta[name="lab-page"]');
@@ -143,7 +143,7 @@
   var INITS = ['', 'swiper-initialized', 'swiper-container-initialized', 'slick-initialized slick-slider', 'aos-init'];
 
   function resolveClassToken(token, elementKey) {
-    var m = /^\$([A-Za-z]+)(?::([\w-]+))?$/.exec(token);
+    var m = /^\$([A-Za-z]\w*)(?::([\w-]+))?$/.exec(token);
     if (!m) return token;
     var kind = m[1];
     var name = m[2];
@@ -173,16 +173,23 @@
     uuid: function (key, r) { return uuid(r); },
     num: function (key, r) { return (key || 'el') + '-' + (1 + int(r, 9)) + chars(r, DIGITS, 7); },
     alpha: function (key, r) { return (key || 'el') + '-' + chars(r, LOWER + UPPER, 6); },
+    // Shopify: one template id per page (template--<14 digits>), and one per section group. A theme or template
+    // update changes only these numbers. Category 'template', so a page can freeze everything else.
+    tpl: function (key, r) { return 'template--' + (1 + int(r, 9)) + chars(r, DIGITS, 13); },
+    group: function (key, r) { return 'sections--' + (1 + int(r, 9)) + chars(r, DIGITS, 13); },
   };
+  var PAGE_WIDE = { group: true, tpl: true };
   var ID_ATTRS = ['id', 'for', 'aria-controls', 'aria-labelledby', 'aria-describedby', 'aria-owns',
-    'aria-activedescendant', 'href', 'list', 'form', 'headers', 'data-testid', 'data-qa'];
+    'aria-activedescendant', 'href', 'list', 'form', 'headers', 'data-testid', 'data-qa', 'data-section-id', 'data-section',
+    'data-section-type', 'data-target'];
   var idMemo = {};
 
   function resolveIds(value, elementKey) {
     return value.replace(/\$([a-z]+)(?:@([\w-]+))?/g, function (all, kind, key) {
       if (!ID_KINDS[kind]) return all;
-      var memoKey = kind + '@' + (key || '#' + elementKey);
-      if (!(memoKey in idMemo)) idMemo[memoKey] = ID_KINDS[kind](key || '', rngFor('ids', memoKey));
+      var memoKey = PAGE_WIDE[kind] ? kind : kind + '@' + (key || '#' + elementKey);
+      var category = PAGE_WIDE[kind] ? 'template' : 'ids';
+      if (!(memoKey in idMemo)) idMemo[memoKey] = ID_KINDS[kind](key || '', rngFor(category, memoKey));
       return idMemo[memoKey];
     });
   }
@@ -285,6 +292,7 @@
       var cls = el.getAttribute('class');
       if (cls && cls.indexOf('$') !== -1) {
         var resolved = cls.split(/\s+/).map(function (t) { return resolveClassToken(t, key); }).join(' ').trim();
+        if (resolved.indexOf('$') !== -1) resolved = resolveIds(resolved, key); // e.g. section-$tpl__main-padding
         if (resolved) el.setAttribute('class', resolved.replace(/\s+/g, ' '));
         else el.removeAttribute('class');
       }
