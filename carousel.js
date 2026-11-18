@@ -46,7 +46,7 @@
       node.removeAttribute('data-aflw-lab');
       node.removeAttribute('id');
     });
-    classes.split(' ').forEach(function (c) { copy.classList.add(c); });
+    if (classes) classes.split(' ').forEach(function (c) { copy.classList.add(c); });
     copy.setAttribute('aria-hidden', 'true');
     return copy;
   }
@@ -177,13 +177,13 @@
       w.appendChild(item);
       return w;
     };
-    stage.appendChild(wrap(clone(items[n - 1], 'owl-clone-content'), 'owl-item cloned'));
+    stage.appendChild(wrap(clone(items[n - 1], ''), 'owl-item cloned'));
     items.forEach(function (item, k) {
       var rel = (k - center + n) % n;
       var classes = 'owl-item' + (rel <= 1 || rel === n - 1 ? ' active' : '') + (rel === 0 ? ' center' : '');
       stage.appendChild(wrap(item, classes));
     });
-    stage.appendChild(wrap(clone(items[0], 'owl-clone-content'), 'owl-item cloned'));
+    stage.appendChild(wrap(clone(items[0], ''), 'owl-item cloned'));
     root.appendChild(outer);
     var nav = el('div', 'owl-nav');
     ['owl-prev', 'owl-next'].forEach(function (cls) {
