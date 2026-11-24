@@ -3,3 +3,22 @@ site-alpha/
 
 # Local Claude Code config (machine-specific paths; this repo is served publicly)
 .claude/
+
+# AccessFlow SDK lab (sdk-tests/)
+# Keys, API tokens and registry configs live only in secrets/
+secrets/
+.npmrc
+*-installation-key
+*-api-token
+# Env-specific installs and output
+sdk-tests/js/package-lock.json
+node_modules/
+.venv/
+sdk-tests/java/.m2/
+target/
+__pycache__/
+.pytest_cache/
+test-results/
+playwright-report/
+sdk-tests/**/report.json
+sdk-tests/**/raw-audits.json
