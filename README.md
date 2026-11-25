@@ -92,3 +92,50 @@ To reset, set `seed` to a new string and `swap: false`.
 
 **Only one category churning.** `defaults.off: ['ids', 'attrs', 'vue', 'angular', 'wrap', 'state']` leaves only hash
 classes changing, and so on.
+
+## AccessFlow SDK lab (`sdk-tests/`)
+
+Runs the accessFlow SDK (JS, Python, Java) against this site and uploads reports to an accessFlow test env.
+
+```
+sdk-tests/js       Playwright test + config (package in sdk-tests/js/node_modules)
+sdk-tests/python   pytest + Playwright (venv in sdk-tests/python/.venv)
+sdk-tests/java     JUnit 5 + Playwright 1.40 (Maven repo in sdk-tests/java/.m2)
+secrets/           git-ignored: <lang>-api-token, <lang>-installation-key, npmrc, pip.conf, maven-settings.xml
+```
+
+Never commit anything from `secrets/`, `node_modules/`, `.venv/` or `.m2/`.
+
+### Run locally (writes reports, no upload)
+
+```bash
+cd sdk-tests/js && ACCESSFLOW_SDK_API_KEY="$(<../../secrets/js-api-token)" npx playwright test
+cd sdk-tests/python && SSL_CERT_FILE=$(.venv/bin/python -m certifi) ACCESSFLOW_SDK_API_KEY="$(<../../secrets/python-api-token)" .venv/bin/python -m pytest -q
+cd sdk-tests/java && ACCESSFLOW_SDK_API_KEY="$(<../../secrets/java-api-token)" mvn -q -s ../../secrets/maven-settings.xml -Dmaven.repo.local=.m2 test
+```
+
+Reports: JS `sdk-tests/js/test-results/accessFlow-report.json`; Python and Java `report.json` in their folders.
+
+### Upload (simulated CI)
+
+Uploads happen only in CI. Add GitHub Actions variables to any command above. Give each language its own `GITHUB_REPOSITORY`
+(e.g. `nivguler-accessibe/sdk-lab-python`): the dashboard matches issues per repo, so a second language on the same repo
+updates the first one's issues instead of showing its own.
+
+```bash
+GITHUB_ACTIONS=true GITHUB_EVENT_NAME=push GITHUB_SHA=$(git rev-parse HEAD) GITHUB_REPOSITORY=nivguler-accessibe/nivguler-accessibe.github.io GITHUB_DEFAULT_BRANCH=main GITHUB_ACTOR=lab GITHUB_REF=refs/heads/<branch> GITHUB_REF_NAME=<branch> GITHUB_RUN_NUMBER=<n> GITHUB_RUN_ID=<n>
+```
+
+Expect `uploaded successfully`; the run shows on the env's CI/CD page under `<branch>`.
+
+### Java quirks (this Mac)
+
+- Keep Playwright 1.40.0: the SDK is compiled against it and breaks on newer versions.
+- Set `PLAYWRIGHT_DOWNLOAD_HOST=https://cdn.playwright.dev PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` and
+  `PW_CHROMIUM_PATH=$(ls -d ~/Library/Caches/ms-playwright/chromium_headless_shell-1255/*/chrome-headless-shell)`
+  (Chromium 120 crashes here).
+
+### Env SDK builds have a dead API host
+
+SDK packages published from an `env/*` branch call `sdk-gcp--accessflow--test.acsb-test.com`, which no longer exists.
+Until CI is fixed, build the SDK locally with the env's host and replace the installed packages (see `CLAUDE.md`).
